@@ -2,8 +2,9 @@
 	
 	/* This rule selects any paragraph elements that are nested within the element with this modifier. */
 	p {
-		line-height: 1.65;  /* no unit of measurement for this attribute */		
-		margin: 1.8rem 0;
+		font-weight: 300;
+		line-height: 1.65;    /* no unit of measurement for this attribute */		
+		margin: 0 0 1.8rem 0; /* top, right, bottom, left */
 		
 		/* Define a font size for small and larger screens. There is no default font size */
 		/* defined above, so it defaults to 1rem.                                         */

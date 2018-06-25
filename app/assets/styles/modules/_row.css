@@ -43,6 +43,11 @@
 			width: 37%;
 		}
 		
+		&__medium-6 {		
+			float: left;
+			width: 50%;
+		}
+		
 		&__medium-8 {
 			float: left;
 			width: 66.67%;						
@@ -73,5 +78,13 @@
 	/* hide the overflow and we will be golden.                                             */
 	&--gutters {
 		margin-right: -65px;
+	}
+	
+	&--gutters-large > div {
+		padding-right: 100px;		
+	}
+	
+	&--gutters-large {
+		margin-right: -100px;
 	}
 }
