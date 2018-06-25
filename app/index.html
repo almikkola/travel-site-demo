@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -6,11 +7,15 @@
   <title>Clear View Escapes</title>
   <meta name="keywords" content="Travel planning, travel bundles, travel escapes, affordable travel">
   <meta name="description" content="Your clarity. One trip away. We create soul restoring journeys that inspire you to be you.">
+  
+  <!-- Add a CSS style sheet to apply to the header -->
+  <!-- Note that this is using the .css in the temp directory, which is the output of the gulp processing. -->
+  <link rel="stylesheet" href="temp/styles/styles.css">
 </head>
 <body>
   <header>
     <img src="assets/images/icons/clear-view-escapes.svg">
-    <a href="#">Get in Touch</a>
+    <a href="#" class="btn">Get in Touch</a>
     <nav>
       <ul>
         <li><a href="#our-beginning">Our Beginning</a></li>
@@ -21,43 +26,160 @@
   </header>
 
   <div class="large-hero">
+    <!-- Non-responsive way: -->
+	<!--
     <img src="assets/images/hero--large.jpg">
-    <h1>Your clarity.</h1>
-    <h2>One trip away.</h2>
-    <p>We create soul restoring journeys that inspire you to be you.</p>
-    <p><a href="#">Get Started Today</a></p>
+	-->
+	<!-- Doing it the responsive image way to handle image cropping ratios: -->
+	<!-- NOTE: Make sure the img tag is last (after the source tags), since it's the default -->
+	<!-- NOTE: For best results, put large size first, smallest size last -->
+	<!--
+	<picture>
+	    <source srcset="assets/images/hero--large.jpg"  media="(min-width: 1380px)">
+		<source srcset="assets/images/hero--medium.jpg" media="(min-width:  990px)">
+	    <source srcset="assets/images/hero--small.jpg"  media="(min-width:  640px)">
+		<img src="assets/images/hero--smaller.jpg" alt="Coastal View">
+	</picture>
+	-->
+	
+	<!-- Now, we are really being responsive - this handles cropping ratios and image -->
+	<!-- resolutions all at once by specifying different resolution images (and widths) -->
+	<!-- for each cropping size. -->
+	<picture>
+	    <source srcset="assets/images/hero--large.jpg 1920w,
+		    assets/images/hero--large-hi-dpi.jpg 3840w"
+		    media="(min-width: 1380px)">
+		<source srcset="assets/images/hero--medium.jpg 1380w,
+            assets/images/hero--medium-hi-dpi.jpg 2760w" 
+		    media="(min-width: 990px)">
+	    <source srcset="assets/images/hero--small.jpg 990w,
+		    assets/images/hero--small-hi-dpi.jpg 1980w"
+		    media="(min-width: 640px)">
+		<img srcset="assets/images/hero--smaller.jpg 640w,
+		    assets/images/hero--smaller-hi-dpi.jpg 1280w" 
+		    alt="Coastal View"
+			class="large-hero__image">
+	</picture>
+	
+	<!-- Use this picture element for debugging; each image has its size -->
+	<!-- superimposed on it, so you can easily see which image is being used. -->
+	<!--
+	<picture>
+	    <source srcset="assets/images/hero--large-i.jpg 1920w,
+		    assets/images/hero--large-hi-dpi-i.jpg 3840w"
+		    media="(min-width: 1380px)">
+		<source srcset="assets/images/hero--medium-i.jpg 1380w,
+            assets/images/hero--medium-hi-dpi-i.jpg 2760w" 
+		    media="(min-width: 990px)">
+	    <source srcset="assets/images/hero--small-i.jpg 990w,
+		    assets/images/hero--small-hi-dpi-i.jpg 1980w"
+		    media="(min-width: 640px)">
+		<img srcset="assets/images/hero--smaller-i.jpg 640w,
+		    assets/images/hero--smaller-hi-dpi-i.jpg 1280w" 
+		    alt="Coastal View">
+	</picture>
+	-->
+	
+    <div class="large-hero__text-content">
+	    <div class="wrapper">
+			<!-- Note that we added the class names here to facilitate using CSS on these headers. -->
+			<h1 class="large-hero__title">Your clarity.</h1>
+			<h2 class="large-hero__subtitle">One trip away.</h2>
+			<p class="large-hero__description">We create soul restoring journeys that inspire you to be you.</p>
+			
+			<!-- Use 2 different BEM modifiers for this button to make a large, orange button -->
+        <p><a href="#" class="btn btn--orange btn--large">Get Started Today</a></p>
+		</div>
+    </div>
   </div>
 
-  <div id="our-beginning">
-    <h2>The first trip we planned was our own.</h2>
-    <h3>Ever since, we&rsquo;ve been working to make travel better for everyone.</h3>
-    <img src="assets/images/first-trip.jpg" alt="Couple walking down a street.">
-    <img src="assets/images/our-start.jpg" alt="Our founder, Jane Doe">
-    <h2>Here&rsquo;s how we got started&hellip;</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <a href="#">quis nostrud exercitation</a> ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Duis aute irure dolor in <strong>reprehenderit in</strong> voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum velit esse cillum <strong>dolore eu fugiat.</strong></p>
+  <div id="our-beginning" class="page-section">
+    <div class="wrapper">
+		<h2 class="headline headline--centered headline--light headline--btm-margin-small">
+		    The first trip we planned <strong>was our own.</strong></h2>
+		<h3 class="headline headline--centered  headline--orange headline--small 
+		    headline--narrow headline--light headline--btm-margin-large">
+		    Ever since, we&rsquo;ve been working to make travel <strong>better for everyone.</strong></h3>
+		
+		<div class="wrapper wrapper--medium wrapper--btm-margin">
+		    <!-- Because we are only changing resolutions and not crop sizes for this image, -->
+			<!-- we do not need a picture element; we only need to change the img's src to -->
+			<!-- a srcset and specify the different images and their sizes (widths) in orer -->
+			<!-- to set up responsive images here. -->
+			<!-- For this image, we are setting up a media query for the sizes attribute -->
+			<!-- that specifies a size for screens 970 pixels and larger, and otherwise, -->
+			<!-- the image just needs to be 100% of the device width (vw = viewport width). -->
+		    <img sizes="(min-width: 970px) 976px, 100vw" 
+			    srcset="assets/images/first-trip-low-res.jpg 565w,
+					assets/images/first-trip.jpg 976w,
+					assets/images/first-trip-hi-dpi.jpg 1952w" 
+			    alt="Couple walking down a street.">
+		</div>
+		
+		<div class="row row--gutters">
+		    <div class="row__medium-4 row__medium-4--larger row__btm_margin_until_medium">
+			    <!-- This use a portrait img for all screens; -->
+				<!-- we want a landscape for smaller screens, -->
+				<!-- so use a picture element instead of img. -->
+				<!--
+			    <img src="assets/images/our-start.jpg" alt="Our founder, Jane Doe">
+				-->
+				<picture>
+				    <!-- Make sure we tell the browser not to use the entire browser window width -->					
+					<!-- (browsers assume that all responsive images do this). The sizes value tells -->
+					<!-- the browser that the image will never be greater than that width. -->
+					<!-- Note that we do not need to use sizes on the default image, because it -->
+					<!-- is only used in single column layout. -->
+					<source sizes="404px" srcset="assets/images/our-start.jpg 404w,
+					    assets/images/our-start-hi-dpi.jpg 808w"
+						media="(min-width: 1020px)">
+					<source sizes="320px" srcset="assets/images/our-start-portrait.jpg 382w,
+					    assets/images/our-start-portrait-hi-dpi.jpg 764w"
+						media="(min-width: 800px)">
+					<img srcset="assets/images/our-start-landscape.jpg 800w,
+					    assets/images/our-start-landscape-hi-dpi.jpg 1600w" 
+						alt="Our founder, Jane Doe">
+				</picture>
+			</div>
+			<div class="row__medium-8 row__medium-8--smaller">
+			    <!-- Since blocks (paragraphs) of text are typically very common on a web page, -->
+				<!-- using the BEM way of giving each of them a class, would be tedious, so instead, -->
+				<!-- wrap these paragraphs and their header in a new div and give it a new class. -->
+				<!-- A good rule of thumb is that if an element is html that we are writing, use -->
+				<!-- a BEM class; if it is content that may come from automated sources, or is -->
+				<!-- is more generic (such as from a word processor, DB, etc., use this method here. -->
+			    <div class="generic-content-container">
+					<h2 class="headline headline--no-top-margin">Here&rsquo;s how we got started&hellip;</h2>									
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <a href="#">quis nostrud exercitation</a> ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<p>Duis aute irure dolor in <strong>reprehenderit in</strong> voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum velit esse cillum <strong>dolore eu fugiat.</strong></p>
+				</div>
+			</div>
+		</div>
+	</div>
   </div>
 
-  <div id="features">
-    <img src="assets/images/icons/star.svg">
-    <h2>Our Features</h2>
-  
-    <img src="assets/images/icons/rain.svg">
-    <h3>We&rsquo;ll Watch the Weather</h3>
-    <p>Download our app and we&rsquo;ll send you a notice if it&rsquo;s about to rain in the next 20 minutes around your current location. A good rain can be refreshing, but sometimes you just want to stay dry.</p>
+  <div id="features" class="page-section page-section--blue"> <!-- Class with a modifier -->
+    <div class="wrapper">
+		<img src="assets/images/icons/star.svg">
+		<h2>Our Features</h2>
+	  
+		<img src="assets/images/icons/rain.svg">
+		<h3>We&rsquo;ll Watch the Weather</h3>
+		<p>Download our app and we&rsquo;ll send you a notice if it&rsquo;s about to rain in the next 20 minutes around your current location. A good rain can be refreshing, but sometimes you just want to stay dry.</p>
 
-    <img src="assets/images/icons/globe.svg">
-    <h3>Global Guides</h3>
-    <p>We&rsquo;ve scoured the entire planet for the best retreats and beautiful vistas. If there&rsquo;s a corner of the world you want to escape to we know the most scenic and inspiring locations.</p>
+		<img src="assets/images/icons/globe.svg">
+		<h3>Global Guides</h3>
+		<p>We&rsquo;ve scoured the entire planet for the best retreats and beautiful vistas. If there&rsquo;s a corner of the world you want to escape to we know the most scenic and inspiring locations.</p>
 
-    <img src="assets/images/icons/wifi.svg">
-    <h3>Wi-Fi Waypoints</h3>
-    <p>We only send you on trips to places we can personally vouch for as being amazing. Which means we&rsquo;ve mapped out where local wi-fi spots are and marked them in our app&rsquo;s map view.</p>
+		<img src="assets/images/icons/wifi.svg">
+		<h3>Wi-Fi Waypoints</h3>
+		<p>We only send you on trips to places we can personally vouch for as being amazing. Which means we&rsquo;ve mapped out where local wi-fi spots are and marked them in our app&rsquo;s map view.</p>
 
-    <img src="assets/images/icons/fire.svg">
-    <h3>Survival Kit</h3>
-    <p>Everytime you book an escape with us we send you a survival kit with the finest materials. The kit will allow you to setup a tent, start a fire, scratch your own back and lower your taxes.</p>
+		<img src="assets/images/icons/fire.svg">
+		<h3>Survival Kit</h3>
+		<p>Everytime you book an escape with us we send you a survival kit with the finest materials. The kit will allow you to setup a tent, start a fire, scratch your own back and lower your taxes.</p>
+	</div>
   </div>
 
   <div id="testimonials">
@@ -81,7 +203,9 @@
   </div>
 
   <footer>
-    <p>Copyright &copy; 2016 Clear View Escapes. All rights reserved. <a href="#">Get in Touch</a></p>
+    <!-- The class here makes this a button like the other Get in Touch button above, but then, -->
+	<!-- we also specify a BEM modifier of orange; a BEM modifier is indicated by 2 dashes.     -->
+    <p>Copyright &copy; 2016 Clear View Escapes. All rights reserved. <a href="#" class="btn btn--orange">Get in Touch</a></p>
   </footer>
 </body>
 </html>

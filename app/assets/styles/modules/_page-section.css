@@ -1,0 +1,17 @@
+/* This class is for creating top and bottom padding to a section. */
+.page-section {
+	
+	padding: 1.2rem 0; /* First arg is top/bottom padding; 2nd is left/right, which we don't need */
+	
+	@mixin atMedium {
+		padding: 4.5rem 0;
+	}
+	
+	
+	
+	&--blue {
+		background-color: $mainBlue;
+		color: $mainWhite;
+    }
+}
+

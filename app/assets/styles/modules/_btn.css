@@ -1,0 +1,22 @@
+.btn {
+	background-color: $mainBlue; /* Dark Blue */
+	color: $mainWhite;           /* White     */
+	text-decoration:none;        /* This will remove the underline from the href link */
+	padding: .75rem 1.2rem;      /* .75rem -> top and bottom padding; 1.2rem -> left and right padding */
+	display: inline-block;       /* Make parent and surronding elements aware of this vertical padding */
+	
+	/* Modifier rule for an orange button. Note that here, we use 2 dashes instead of 2 underscores,   */
+	/* because the 2 dashes is what defines this as a BEM modifier rule.                               */
+    &--orange {
+		background-color: $mainOrange;
+    }
+	
+	/* Modifier rule for a large button. */
+	&--large {
+		padding: 1.1rem 1.9rem;
+		
+		@mixin atSmall {
+			font-size: 1.25rem; /* There is no font-size above, so it will default to 1rem */
+		}
+	}
+}

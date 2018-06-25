@@ -1,0 +1,6 @@
+/* CSS file for defining reusable variables in other CSS files. */
+/* This file will be imported in the main styles.css file.      */
+
+$mainWhite:  #FFFFFF;
+$mainBlue:   #2F5572;
+$mainOrange: #D59541;

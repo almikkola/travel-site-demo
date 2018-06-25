@@ -1,0 +1,78 @@
+/* CSS to control the large-hero class div in index.html */
+/* Note that the leading underscore in the file name indicates that this is */
+/* a partial file and will not be used standalone, but instead, will be imported */
+/* into another CSS file. */
+.large-hero {
+	position: relative;
+	
+	/* Example of using nested CSS to help with organization */
+	/* without using decendent selectors (which is what Gulp */
+	/* would normally create).                               */
+	/* The "&" gets translated to the root selector, which   */
+	/* in this case, is .large_hero                             */
+	&__text-content {
+	    position: absolute;
+	    top: 50%;
+	    transform: translateY(-50%);  /* Positions an element vertically, relative to itself */
+	    left: 0;
+	    width: 100%;
+	    text-align: center;
+    }
+	
+	&__title {
+	    font-weight: 300;
+		margin: 0;
+	    color: $mainBlue;  /* Dark Blue */
+		font-size: 2.4rem;
+		
+		
+	    /*font-size: 1.1rem;*/ /* Font size is relative to the root element's (the html element)'s size */
+		                   /* The default size for the html element in most browsers is about 16 px */
+						   /* So, this is 16 * 1.1 = 17.6 px                                        */
+						   /* Use rem for font size, padding, and margin so everything scales       */
+						   /* properly w.r.t. the default font size in case the user changes it.    */ 
+						   /* We specify a font here for a very small screen and modify upwards.    */
+		
+		/* This uses a media query to look for a larger screen and bump up the font size. */
+		/* This is the original way to do this; we can use mixins instead.                */
+		/*****
+		@media (min-width: 530px) {
+			font-size: 4.8rem;
+		}
+		*****/
+		
+		@mixin atSmall {
+			font-size: 2rem;
+		}
+		
+		@mixin atMedium {
+			font-size: 3.2rem;
+		}
+		
+		@mixin atLarge {
+			font-size: 4.8rem;
+		}
+    }
+
+    &__subtitle {
+	    font-weight: 300;
+    	color: $mainBlue;  /* Dark Blue */
+	    font-size: 1.1rem;		
+		margin: 0;
+		
+		@mixin atSmall {
+			font-size: 2.9rem;
+		}
+    }
+	
+	&__description {
+		color: $white;     /* White */
+		font-size: 1.875rem;
+		font-weight: 100;
+		text-shadow: 2px 2px 0 rgba(0, 0, 0, .1);  /* Black w/ alpha of .1 means 10% visible */
+		max-width: 30rem;  /* Measured to be 480px: 480/16 = 30rem */
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+

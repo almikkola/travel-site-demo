@@ -1,0 +1,24 @@
+/* Body element */
+body {
+	/* Font to use, with a fall-back if it's not found */
+	font-family: 'Roboto', sans-serif;
+	color: #333;  /* Dark gray */
+}
+
+/* Target all images on the page to restrict their dimensions to fit the page */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* This rule has a selector ("*") that selects every element on the page. */
+/* This applies a border box to all elements, which takes padding out of  */
+/* the column width percentage calculation.                               */
+* {
+	box-sizing: border-box;
+}
+
+/* This rule selects all links on a page. */
+a {
+	color: $mainOrange;
+}

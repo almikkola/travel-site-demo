@@ -1,0 +1,77 @@
+.row {	
+	
+	/* The float attribute being used below takes the element out of the flow of the page.   */
+	/* That is fine if only a few elements float, but if everything floats, the parent div   */
+	/* has no idea how tall it is, which causes the following section to ride up into the    */
+	/* element with the clear floats.                                                        */
+	/*                                                                                       */
+	/* To avoid this, we could add an empty div in the html markup whose only job would be   */
+	/* to define a modifier pointing to a rule where we could use "clear: both" to clear the */
+	/* float for one element. With at least one non-floating element, the height layout      */
+	/* issue is resolved.                                                                    */
+	/*                                                                                       */
+	/* However, it's never a good idea to add an empty element that exists only for styling  */
+	/* purposes.                                                                             */
+	/*                                                                                       */
+	/* The better way to handle this is to add some pseudo (or "fake") content with CSS as   */
+	/* is being done in the clearfix mixin (see _mixins.css to see the CSS code for this).   */
+	/* The selector in the mixin will add blank space after all the content in the main row  */
+	/* div, which fixes the all-floating issue.                                              */
+	@mixin clearfix;
+	
+	/* Give an image bottom margin when its really small, up until it becomes medium sized. */
+	/* The at medium part of this is handled in the mixin below.                            */
+	&__btm_margin_until_medium {
+		margin-bottom: 1rem;
+	}
+	
+	/* Set up multi-column display for larger screens, but ensure full-width single column   */
+	/* with stacked content for smaller screens. This uses the atMedium mixin, which defines */
+	/* (in _mixins.css) a media query for medium screens.                                    */
+	@mixin atMedium {
+		
+		&__btm_margin_until_medium {
+			margin-bottom: 0;
+		}
+		
+		&__medium-4 {		
+			float: left;
+			width: 33.33%;
+		}
+		
+		&__medium-4--larger {
+			width: 37%;
+		}
+		
+		&__medium-8 {
+			float: left;
+			width: 66.67%;						
+		}
+		
+		&__medium-8--smaller {
+			width: 63%;
+		}
+	}
+	
+	/* This creates a modifier rule that selects/affects all direct children with a div tag. */
+	/* In other words, all the columns of the layout.                                        */
+	/* This extra padding will be tacked onto the __4 and __8 column defs above, which will  */
+	/* cause a column wrap because the columns will now take up more than 100% of the width. */
+	/* So, the column percentages must be recalculated to account for the padding.           */
+	/* Or, we can also use a border-box to cause the browser to take the padding out of the  */
+	/* width calculations, thus using the original widths.                                   */
+	/* Since we have defined a border-box for every element on the page in _global.css, we   */
+	/* are good to go!                                                                       */
+	&--gutters > div {
+		padding-right: 65px;		
+	}
+	
+	/* This counter-acts the above rule so that the right-most column has no right padding, */
+	/* while not affecting the ratio of the columns, which is what would happen if you told */
+	/* the final column to have to not have any padding. However, this will cause the       */
+	/* element to bleed over the edge of the parent div, so in the .wrapper rule, we need   */
+	/* hide the overflow and we will be golden.                                             */
+	&--gutters {
+		margin-right: -65px;
+	}
+}
