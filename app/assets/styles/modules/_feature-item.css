@@ -1,0 +1,35 @@
+.feature-item {
+	position: relative;	
+	padding-bottom: 2.5rem;
+	
+	/* Make the image and text sit side-by-side */
+	/* Because we are setting an absolute position for the icon relative to its parent, */
+	/* we need to specify relative positioning for the parent block. */
+	&__icon {
+		display: block;
+		margin: 0 auto;
+		
+		@mixin atSmall {
+			position: absolute;
+			left: 0;
+		}
+	}
+	
+	&__title {
+		font-size: 1.6rem;
+		font-weight: 300;
+		margin-top: .7em;
+		margin-bottom: .8rem;
+		text-align: center;
+		
+		@mixin atSmall {
+			text-align: left;
+			margin-top: 1em;
+			font-size: 1.875rem;
+		}
+	}
+
+    @mixin atSmall {
+		padding-left: 95px;
+	}	
+}

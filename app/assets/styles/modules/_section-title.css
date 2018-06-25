@@ -1,0 +1,29 @@
+.section-title {
+	font-size: 2.55rem;
+	font-weight: 300;
+	text-align: center;
+	
+	/* This mixin targets Small or larger screens. */
+	@mixin atSmall {
+		font-size: 3.75rem;
+	}
+	
+	/* Targets and strong tags nested within the section-title class */
+	strong {
+		font-weight: 500;
+	}
+	
+	&__icon {					
+		display: block;     /* This will drop any trailing text to a new line */
+		margin-left: auto;
+		margin-right: auto; /* Auto margins keep the icon horizontally centered */
+		margin-bottom: .6rem;
+		
+		@mixin atSmall {
+			margin-left: 0;
+			margin-right: .5rem;
+			margin-bottom: 0;
+			display: inline-block; /* Don't drop trailing text to a new line on larger screens */
+		}
+	}
+}

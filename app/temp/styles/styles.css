@@ -666,8 +666,6 @@ a {
 	
 	/* This counter-acts the above rule so that the right-most column has no right padding, */
 	/* while not affecting the ratio of the columns, which is what would happen if you told */
-	/* the final column to have to not have any padding. However, this will cause the       */
-	/* element to bleed over the edge of the parent div, so in the .wrapper rule, we need   */
 }
 
 /* div, which fixes the all-floating issue.                                              */
@@ -701,6 +699,11 @@ a {
 			width: 37%;
 		}
 		
+		.row__medium-6 {		
+			float: left;
+			width: 50%;
+		}
+		
 		.row__medium-8 {
 			float: left;
 			width: 66.67%;						
@@ -723,6 +726,18 @@ a {
 		margin-right: -65px;
 	}
 
+/* element to bleed over the edge of the parent div, so in the .wrapper rule, we need   */
+
+.row--gutters-large > div {
+		padding-right: 100px;		
+	}
+
+/* the final column to have to not have any padding. However, this will cause the       */
+
+.row--gutters-large {
+		margin-right: -100px;
+	}
+
 .generic-content-container {
 	
 	/* This rule selects any links within a paragraph element.  */
@@ -732,8 +747,9 @@ a {
 /* This rule selects any paragraph elements that are nested within the element with this modifier. */
 
 .generic-content-container p {
-		line-height: 1.65;  /* no unit of measurement for this attribute */		
-		margin: 1.8rem 0;
+		font-weight: 300;
+		line-height: 1.65;    /* no unit of measurement for this attribute */		
+		margin: 0 0 1.8rem 0; /* top, right, bottom, left */
 		
 		/* Define a font size for small and larger screens. There is no default font size */
 	}
@@ -757,4 +773,90 @@ a {
 						  /* specific paragraph here instead of defining it globally.             */
 						  /* One of the BEM big ideas is to use very few global selectors, and to */
 						  /* be very picky about what goes into _global.css                       */
+	}
+
+.section-title {
+	font-size: 2.55rem;
+	font-weight: 300;
+	text-align: center;
+}
+
+/* This mixin targets Small or larger screens. */
+
+@media (min-width: 530px) {
+
+.section-title {
+		font-size: 3.75rem
+}
+	}
+
+/* Targets and strong tags nested within the section-title class */
+
+.section-title strong {
+		font-weight: 500;
+	}
+
+.section-title__icon {					
+		display: block;     /* This will drop any trailing text to a new line */
+		margin-left: auto;
+		margin-right: auto; /* Auto margins keep the icon horizontally centered */
+		margin-bottom: .6rem;
+	}
+
+@media (min-width: 530px) {
+
+.section-title__icon {
+			margin-left: 0;
+			margin-right: .5rem;
+			margin-bottom: 0;
+			display: inline-block /* Don't drop trailing text to a new line on larger screens */
+	}
+	}
+
+.feature-item {
+	position: relative;	
+	padding-bottom: 2.5rem;	
+}
+
+/* we need to specify relative positioning for the parent block. */
+
+.feature-item__icon {
+		display: block;
+		margin: 0 auto;
+	}
+
+@media (min-width: 530px) {
+
+.feature-item__icon {
+			position: absolute;
+			left: 0
+	}
+	}
+
+/* Because we are setting an absolute position for the icon relative to its parent, */
+
+.feature-item__title {
+		font-size: 1.6rem;
+		font-weight: 300;
+		margin-top: .7em;
+		margin-bottom: .8rem;
+		text-align: center;
+	}
+
+@media (min-width: 530px) {
+
+.feature-item__title {
+			text-align: left;
+			margin-top: 1em;
+			font-size: 1.875rem
+	}
+	}
+
+/* Make the image and text sit side-by-side */
+
+@media (min-width: 530px) {
+
+.feature-item {
+		padding-left: 95px	
+}
 	}
