@@ -7,11 +7,43 @@
 		padding: 4.5rem 0;
 	}
 	
+	/* Rule to use bottom padding only on medium or larger screens. */
+	&--no-btm-padding-until-medium {
+		padding-bottom: 0;
+		
+		@mixin atMedium {
+			padding-bottom: 4.5rem;
+		}
+	}
 	
+	/* Rule to use bottom padding only on large or larger screens. */
+	&--no-btm-padding-until-large {
+		padding-bottom: 0;
+		
+		@mixin atLarge {
+			padding-bottom: 4.5rem;
+		}
+	}
 	
 	&--blue {
 		background-color: $mainBlue;
 		color: $mainWhite;
     }
+	
+	&--testimonials {
+		background-color: #E0E6EF;
+		
+		@mixin atLarge {
+		/* Loading a background image from the specified URL.                              */
+		/* Aligning towards the top of the section vertically and centered horizontally.   */
+		/* Tell the image to not repeat (i.e. use a single copy of the image; no tiling).  */
+		/* The background size setting tells the image to shrink or stretch to always      */
+		/* perfectly cover the background div.                                             */
+		/* Note that we only want this image on large or larger screens, so it is located  */
+		/* within this mixin.                                                              */
+		background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+		background-size: cover;
+		}
+	}
 }
 

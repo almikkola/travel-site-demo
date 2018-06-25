@@ -19,15 +19,19 @@
 	/* div, which fixes the all-floating issue.                                              */
 	@mixin clearfix;
 	
+	&--top-padding {
+		padding-top: 80px;
+	}
+	
 	/* Give an image bottom margin when its really small, up until it becomes medium sized. */
 	/* The at medium part of this is handled in the mixin below.                            */
 	&__btm_margin_until_medium {
 		margin-bottom: 1rem;
 	}
 	
-	/* Set up multi-column display for larger screens, but ensure full-width single column   */
-	/* with stacked content for smaller screens. This uses the atMedium mixin, which defines */
-	/* (in _mixins.css) a media query for medium screens.                                    */
+	/* Set up multi-column display for medium and larger screens, but ensure full-width single */
+	/* column with stacked content for smaller screens. This uses the atMedium mixin, which    */
+	/* defines (in _mixins.css) a media query for medium screens.                              */
 	@mixin atMedium {
 		
 		&__btm_margin_until_medium {
@@ -54,6 +58,39 @@
 		}
 		
 		&__medium-8--smaller {
+			width: 63%;
+		}
+	}
+	
+	/* Set up multi-column display for large and larger screens, but ensure full-width single */
+	/* column with stacked content for smaller screens. This uses the atMedium mixin, which    */
+	/* defines (in _mixins.css) a media query for medium screens.                              */
+	@mixin atLarge {
+		
+		&__btm_margin_until_large {
+			margin-bottom: 0;
+		}
+		
+		&__large-4 {		
+			float: left;
+			width: 33.33%;
+		}
+		
+		&__large-4--larger {
+			width: 37%;
+		}
+		
+		&__large-6 {		
+			float: left;
+			width: 50%;
+		}
+		
+		&__large-8 {
+			float: left;
+			width: 66.67%;						
+		}
+		
+		&__large-8--smaller {
 			width: 63%;
 		}
 	}
@@ -86,5 +123,42 @@
 	
 	&--gutters-large {
 		margin-right: -100px;
+	}
+	
+	&--gutters-small > div {
+		padding-right: 45px;
+	}
+	
+	&--gutters-small {
+		margin-right: -45px;
+	}
+	
+	/* Begin Equal Height Rules */
+	&--equal-height-at-medium {
+		@mixin atMedium {
+			display: flex;  /* Use flexbox; this does nothing on its own w/o doing same to each col below */
+		}
+		
+		/* Select direct descendants that have a type tag of div. */
+		/* This selects all of the columns within the parent div. */
+		/* This tells all columns to use flexbox.                 */
+		& > div {
+			float: none;
+			display: flex;
+		}
+	}
+	
+	&--equal-height-at-large {
+		@mixin atLarge {
+			display: flex;  /* Use flexbox; this does nothing on its own w/o doing same to each col below */
+		}
+		
+		/* Select direct descendants that have a type tag of div. */
+		/* This selects all of the columns within the parent div. */
+		/* This tells all columns to use flexbox.                 */
+		& > div {
+			float: none;
+			display: flex;
+		}
 	}
 }

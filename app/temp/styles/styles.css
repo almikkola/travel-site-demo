@@ -354,21 +354,21 @@ template {
 
 /* Define a mixin that will use a media query to handle large screens */
 
-/* This mixin adds some pseudo (or "fake") content with CSS. That allows for the use    */
+/* This mixin adds some pseudo (or "fake") content with CSS. That allows for the use     */
 
-/* of additional to do something else; in this case, we are clearing the float in both  */
+/* of additional CSS to do something else; in this case, we are clearing the float in    */
 
-/* directions and displaying in a table format. This fixes the all-floating problem as  */
+/* both directions and displaying in a table format. This fixes the all-floating problem */
 
-/* described in _row.css where using floats everywhere causes the div to not know about */
+/* as described in _row.css where using floats everywhere causes the div to not know     */
 
-/* its height, which messes up layout in the vertical dimension.                        */
+/* about its height, which messes up layout in the vertical dimension.                   */
 
-/*                                                                                      */
+/*                                                                                       */
 
-/* This selector will add blank space after all the content in the main row div, which  */
+/* This selector will add blank space after all the content in the main row div, which   */
 
-/* fixes the all-floating issue.                                                        */
+/* fixes the all-floating issue.                                                         */
 
 /* Body element */
 
@@ -529,11 +529,43 @@ a {
 	padding-right: 18px;
 	max-width: 1236px;   /* Account for padding in max width: 1200 + 18 + 18 = 1236 */
 	margin-left: auto;
-	margin-right: auto;
+	margin-right: auto;	
 }
 
 .wrapper--medium {
 		max-width: 980px;
+	}
+
+.wrapper--no_padding-until-medium {
+		/* Here, we need to offset the padding-left and padding-right settings from */
+		/* the main wrapper class.                                                  */
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+@media (min-width: 800px) {
+
+.wrapper--no_padding-until-medium {
+			/* For medium and larger screens, we want to add the padding back in. */
+			padding-left: 18px;
+			padding-right: 18px
+	}
+	}
+
+.wrapper--no_padding-until-large {
+		/* Here, we need to offset the padding-left and padding-right settings from */
+		/* the main wrapper class.                                                  */
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+@media (min-width: 1010px) {
+
+.wrapper--no_padding-until-large {
+			/* For medium and larger screens, we want to add the padding back in. */
+			padding-left: 18px;
+			padding-right: 18px
+	}
 	}
 
 /* This gets rid of extra padding in a nested wrapper. */
@@ -572,10 +604,55 @@ a {
 }
 	}
 
+/* Rule to use bottom padding only on medium or larger screens. */
+
+.page-section--no-btm-padding-until-medium {
+		padding-bottom: 0;
+	}
+
+@media (min-width: 800px) {
+
+.page-section--no-btm-padding-until-medium {
+			padding-bottom: 4.5rem
+	}
+	}
+
+/* Rule to use bottom padding only on large or larger screens. */
+
+.page-section--no-btm-padding-until-large {
+		padding-bottom: 0;
+	}
+
+@media (min-width: 1010px) {
+
+.page-section--no-btm-padding-until-large {
+			padding-bottom: 4.5rem
+	}
+	}
+
 .page-section--blue {
 		background-color: #2F5572;
 		color: #FFFFFF;
     }
+
+.page-section--testimonials {
+		background-color: #E0E6EF;
+	}
+
+@media (min-width: 1010px) {
+
+.page-section--testimonials {
+		/* Loading a background image from the specified URL.                              */
+		/* Aligning towards the top of the section vertically and centered horizontally.   */
+		/* Tell the image to not repeat (i.e. use a single copy of the image; no tiling).  */
+		/* The background size setting tells the image to shrink or stretch to always      */
+		/* perfectly cover the background div.                                             */
+		/* Note that we only want this image on large or larger screens, so it is located  */
+		/* within this mixin.                                                              */
+		background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+		background-size: cover
+	}
+	}
 
 .headline {
 	font-weight: 300;
@@ -648,12 +725,14 @@ a {
 	/*                                                                                       */
 	/* The better way to handle this is to add some pseudo (or "fake") content with CSS as   */
 	/* is being done in the clearfix mixin (see _mixins.css to see the CSS code for this).   */
-	/* The selector in the mixin will add blank space after all the content in the main row  */
 	
 	/* Give an image bottom margin when its really small, up until it becomes medium sized. */
 	
-	/* Set up multi-column display for larger screens, but ensure full-width single column   */
-	/* with stacked content for smaller screens. This uses the atMedium mixin, which defines */
+	/* Set up multi-column display for medium and larger screens, but ensure full-width single */
+	/* column with stacked content for smaller screens. This uses the atMedium mixin, which    */
+	
+	/* Set up multi-column display for large and larger screens, but ensure full-width single */
+	/* column with stacked content for smaller screens. This uses the atMedium mixin, which    */
 	
 	/* This creates a modifier rule that selects/affects all direct children with a div tag. */
 	/* In other words, all the columns of the layout.                                        */
@@ -662,10 +741,6 @@ a {
 	/* So, the column percentages must be recalculated to account for the padding.           */
 	/* Or, we can also use a border-box to cause the browser to take the padding out of the  */
 	/* width calculations, thus using the original widths.                                   */
-	/* Since we have defined a border-box for every element on the page in _global.css, we   */
-	
-	/* This counter-acts the above rule so that the right-most column has no right padding, */
-	/* while not affecting the ratio of the columns, which is what would happen if you told */
 }
 
 /* div, which fixes the all-floating issue.                                              */
@@ -676,13 +751,19 @@ a {
 		display: table;
 	}
 
+/* The selector in the mixin will add blank space after all the content in the main row  */
+
+.row--top-padding {
+		padding-top: 80px;
+	}
+
 /* The at medium part of this is handled in the mixin below.                            */
 
 .row__btm_margin_until_medium {
 		margin-bottom: 1rem;
 	}
 
-/* (in _mixins.css) a media query for medium screens.                                    */
+/* defines (in _mixins.css) a media query for medium screens.                              */
 
 @media (min-width: 800px) {
 		
@@ -714,6 +795,38 @@ a {
 		}
 	}
 
+/* defines (in _mixins.css) a media query for medium screens.                              */
+
+@media (min-width: 1010px) {
+		
+		.row__btm_margin_until_large {
+			margin-bottom: 0;
+		}
+		
+		.row__large-4 {		
+			float: left;
+			width: 33.33%;
+		}
+		
+		.row__large-4--larger {
+			width: 37%;
+		}
+		
+		.row__large-6 {		
+			float: left;
+			width: 50%;
+		}
+		
+		.row__large-8 {
+			float: left;
+			width: 66.67%;						
+		}
+		
+		.row__large-8--smaller {
+			width: 63%;
+		}
+	}
+
 /* are good to go!                                                                       */
 
 .row--gutters > div {
@@ -737,6 +850,70 @@ a {
 .row--gutters-large {
 		margin-right: -100px;
 	}
+
+/* while not affecting the ratio of the columns, which is what would happen if you told */
+
+.row--gutters-small > div {
+		padding-right: 45px;
+	}
+
+/* This counter-acts the above rule so that the right-most column has no right padding, */
+
+.row--gutters-small {
+		margin-right: -45px;
+	}
+
+/* Begin Equal Height Rules */
+
+.row--equal-height-at-medium {
+		
+		/* Select direct descendants that have a type tag of div. */
+		/* This selects all of the columns within the parent div. */
+	}
+
+@media (min-width: 800px) {
+
+.row--equal-height-at-medium {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex  /* Use flexbox; this does nothing on its own w/o doing same to each col below */
+	}
+	}
+
+/* This tells all columns to use flexbox.                 */
+
+.row--equal-height-at-medium > div {
+			float: none;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+		}
+
+/* Since we have defined a border-box for every element on the page in _global.css, we   */
+
+.row--equal-height-at-large {
+		
+		/* Select direct descendants that have a type tag of div. */
+		/* This selects all of the columns within the parent div. */
+	}
+
+@media (min-width: 1010px) {
+
+.row--equal-height-at-large {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex  /* Use flexbox; this does nothing on its own w/o doing same to each col below */
+	}
+	}
+
+/* This tells all columns to use flexbox.                 */
+
+.row--equal-height-at-large > div {
+			float: none;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+		}
 
 .generic-content-container {
 	
@@ -796,6 +973,10 @@ a {
 		font-weight: 500;
 	}
 
+.section-title--blue {
+		color: #2F5572;
+	}
+
 .section-title__icon {					
 		display: block;     /* This will drop any trailing text to a new line */
 		margin-left: auto;
@@ -806,6 +987,8 @@ a {
 @media (min-width: 530px) {
 
 .section-title__icon {
+			position: relative;
+			top: 8px;
 			margin-left: 0;
 			margin-right: .5rem;
 			margin-bottom: 0;
@@ -859,4 +1042,80 @@ a {
 .feature-item {
 		padding-left: 95px	
 }
+	}
+
+.testimonial {
+	background-color: rgba(255, 255, 255, .8); /* Alpha values are specified from 0 to 1 */
+	padding: 0 18px 1px 18px;
+	margin-bottom: 98px;
+}
+
+/* or larger screens. */
+
+@media (min-width: 1010px) {
+
+.testimonial {
+		/* Top, Right, Bottom, Left */
+		/* The bottom padding of 1px gives the paragraph */
+		/* bottom padding (define elsewhere) somewhere to go. */
+		padding: 0 1.875rem 1px 1.875rem;
+		
+		/* Zero-out the bottom margin for medium or larger screens. */
+		margin-bottom: 0
+}
+	}
+
+/* page section element. */
+
+.testimonial--last {
+		margin-bottom: 0;
+	}
+
+/* the last testimonial. The rest of it must be removed from the testimonial's */
+
+.testimonial__photo {
+		/* Creates rounded corners - radius should be 1/2 of length of the image to make it a circle. */
+		/* The overflow of hidden is needed to make the rounded corners show. */
+		border-radius: 80px;   
+		overflow: hidden;      
+		
+		/* Needed to allow the right hand corners to show properly. */
+		/* (the parent div uses the full available width, so you can't see the right-hand rounded corners). */
+		/* Specifying the div's width and height equal to the size of the image, fixes this. */
+		width: 160px;          
+		height: 160px;         		                       
+							   
+		/* Top, Left, Bottom, Right; left and right of auto centers horizontally. */
+		/* The -80px bottom margin counteracts the -80px top placement below so the rest of the */
+		/* block's contents know to move up along with the image; without this, they think the */
+		/* image still sits at its old location and a big gap between image and text exists. */
+		margin: 0 auto -80px auto; 
+		
+		/* These two settings allow for relative placement of the image. */
+		/* The negative placement here, places the image halfway out of the top edge. */
+		position: relative;    
+		top: -80px;            
+		
+		/* Gives the image a solid border of the same color as the block's background */
+		border: 6px solid rgba(255, 255, 255, .8);			
+	}
+
+/* This gets rid of (most) of the light blue background at the bottom of */
+
+.testimonial__title {
+		color: #2F5572;
+		text-align: center;
+		font-size: 1.5rem;
+		font-weight: 500;
+		margin: 0;
+	}
+
+/* Create a mixin that specifies testimonial paragraph padding only for large */
+
+.testimonial__subtitle {
+		color: #D59541;
+		text-align: center;
+		font-size: 1rem;
+		font-weight: 400;
+		margin: .25rem 0 1rem 0;
 	}

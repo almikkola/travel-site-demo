@@ -10,6 +10,32 @@
 		max-width: 980px;
 	}
 	
+	&--no_padding-until-medium {
+		/* Here, we need to offset the padding-left and padding-right settings from */
+		/* the main wrapper class.                                                  */
+		padding-left: 0;
+		padding-right: 0;		
+		
+		@mixin atMedium {
+			/* For medium and larger screens, we want to add the padding back in. */
+			padding-left: 18px;
+			padding-right: 18px;
+		}
+	}
+	
+	&--no_padding-until-large {
+		/* Here, we need to offset the padding-left and padding-right settings from */
+		/* the main wrapper class.                                                  */
+		padding-left: 0;
+		padding-right: 0;		
+		
+		@mixin atLarge {
+			/* For medium and larger screens, we want to add the padding back in. */
+			padding-left: 18px;
+			padding-right: 18px;
+		}
+	}
+	
 	/* This defines a wrapper within a wrapper. */
 	/* This gets rid of extra padding in a nested wrapper. */
 	.wrapper {
@@ -23,5 +49,5 @@
 		@mixin atSmall {
 			margin-bottom: 3.75rem;
 		}
-	}
+	}	
 }

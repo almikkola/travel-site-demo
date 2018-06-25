@@ -14,19 +14,19 @@
 
 /* Define a mixin that will use a media query to handle large screens */
 @define-mixin atLarge {
-	@media (min-width: 1200px) {
+	@media (min-width: 1010px) {
 		@mixin-content;
 	}
 }
 
-/* This mixin adds some pseudo (or "fake") content with CSS. That allows for the use    */
-/* of additional to do something else; in this case, we are clearing the float in both  */
-/* directions and displaying in a table format. This fixes the all-floating problem as  */
-/* described in _row.css where using floats everywhere causes the div to not know about */
-/* its height, which messes up layout in the vertical dimension.                        */
-/*                                                                                      */
-/* This selector will add blank space after all the content in the main row div, which  */
-/* fixes the all-floating issue.                                                        */
+/* This mixin adds some pseudo (or "fake") content with CSS. That allows for the use     */
+/* of additional CSS to do something else; in this case, we are clearing the float in    */
+/* both directions and displaying in a table format. This fixes the all-floating problem */
+/* as described in _row.css where using floats everywhere causes the div to not know     */
+/* about its height, which messes up layout in the vertical dimension.                   */
+/*                                                                                       */
+/* This selector will add blank space after all the content in the main row div, which   */
+/* fixes the all-floating issue.                                                         */
 @define-mixin  clearfix {
 	&::after {
 		content: "";

@@ -1,0 +1,67 @@
+.testimonial {
+	background-color: rgba(255, 255, 255, .8); /* Alpha values are specified from 0 to 1 */
+	padding: 0 18px 1px 18px;
+	margin-bottom: 98px;
+	
+	/* Create a mixin that specifies testimonial paragraph padding only for large */
+	/* or larger screens. */
+	@mixin atLarge {
+		/* Top, Right, Bottom, Left */
+		/* The bottom padding of 1px gives the paragraph */
+		/* bottom padding (define elsewhere) somewhere to go. */
+		padding: 0 1.875rem 1px 1.875rem;
+		
+		/* Zero-out the bottom margin for medium or larger screens. */
+		margin-bottom: 0;
+	}	
+
+	/* This gets rid of (most) of the light blue background at the bottom of */
+	/* the last testimonial. The rest of it must be removed from the testimonial's */
+	/* page section element. */
+    &--last {
+		margin-bottom: 0;
+	}		
+	
+	&__photo {
+		/* Creates rounded corners - radius should be 1/2 of length of the image to make it a circle. */
+		/* The overflow of hidden is needed to make the rounded corners show. */
+		border-radius: 80px;   
+		overflow: hidden;      
+		
+		/* Needed to allow the right hand corners to show properly. */
+		/* (the parent div uses the full available width, so you can't see the right-hand rounded corners). */
+		/* Specifying the div's width and height equal to the size of the image, fixes this. */
+		width: 160px;          
+		height: 160px;         		                       
+							   
+		/* Top, Left, Bottom, Right; left and right of auto centers horizontally. */
+		/* The -80px bottom margin counteracts the -80px top placement below so the rest of the */
+		/* block's contents know to move up along with the image; without this, they think the */
+		/* image still sits at its old location and a big gap between image and text exists. */
+		margin: 0 auto -80px auto; 
+		
+		/* These two settings allow for relative placement of the image. */
+		/* The negative placement here, places the image halfway out of the top edge. */
+		position: relative;    
+		top: -80px;            
+		
+		/* Gives the image a solid border of the same color as the block's background */
+		border: 6px solid rgba(255, 255, 255, .8);			
+	}
+	
+	&__title {
+		color: $mainBlue;
+		text-align: center;
+		font-size: 1.5rem;
+		font-weight: 500;
+		margin: 0;
+	}
+	
+	&__subtitle {
+		color: $mainOrange;
+		text-align: center;
+		font-size: 1rem;
+		font-weight: 400;
+		margin: .25rem 0 1rem 0;
+	}
+}
