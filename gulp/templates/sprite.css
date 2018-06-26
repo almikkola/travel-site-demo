@@ -1,0 +1,26 @@
+/* WARNING: do not edit modules/_sprite.css directly, as it is gernated automatically by gulp! */
+/* Instead, edit gulp/templates/sprite.css */
+
+/* This uses the Moustache Template system. */
+/* Any code between the two shapes lines will be iterated over for each icon. */
+/* This will create an icon rule for each icon along with the specified attributes. */
+/* The sprite portion of background-image needs 3 sets of braces because it has to */
+/* go into the svg subdirectory, and we don't want the slash for that subdir to be escaped. */
+/* To get the proper variable names to use here, go to the svg-sprite GitHub repo, */
+/* and go to the readme or documentation section; the variable names are listed there. */
+/* The first block will only run on the first loop iteration. This makes sure we only */
+/* have the icon path generated once, creating a icon rule for it. This makes our */
+/* generated CSS more consise. */
+{{#shapes}}
+    {{#first}}
+	    .icon {
+			background-image: url('/assets/images/sprites/{{{sprite}}}');
+		}
+	{{/first}}
+
+    .icon--{{base}} {
+		width: {{width.outer}}px;
+		height: {{height.outer}}px;		
+		background-position: {{position.relative.xy}};
+	}
+{{/shapes}}

@@ -160,8 +160,13 @@
   </div>
 
   <div id="features" class="page-section page-section--blue"> <!-- Class with a modifier -->
-    <div class="wrapper">		
-		<h2 class="section-title"><img class="section-title__icon" src="assets/images/icons/star.svg"> Our <strong>Features</strong></h2>
+    <div class="wrapper">	
+        <!-- Replacing an img spec with an icon from a sprite file -->	
+		<!-- src="assets/images/icons/star.svg" -->
+		<!-- section-title__icon -->
+		<!-- icon is the class name of the rule we created that creates the icon path once. -->
+		<!-- icon--star is the class name for this image in the generated _sprite.css file. -->
+		<h2 class="section-title"><span class="icon icon--star section-title__icon"></span> Our <strong>Features</strong></h2>
 	  
 	    <!-- We are reusing the row class we created previously to use a multi-column format. -->
 		<!-- We are also reusing the generic-content-container class for formatting paragraph text. -->
@@ -171,26 +176,26 @@
 			<!-- 6 of the 12-column grid bars. -->
 			<div class="row__medium-6">
                 <div class="feature-item">
-					<img class="feature-item__icon" src="assets/images/icons/rain.svg">
-					<h3 class="feature-item__title">We&rsquo;ll Watch the Weather</h3>
+					<span class="icon icon--rain feature-item__icon"></span>
+					<h3 class="feature-item__title">We&rsquo;ll Watch the Weather</h3>`
 					<p>Download our app and we&rsquo;ll send you a notice if it&rsquo;s about to rain in the next 20 minutes around your current location. A good rain can be refreshing, but sometimes you just want to stay dry.</p>
 				</div>
 
 				<div class="feature-item">
-					<img class="feature-item__icon" src="assets/images/icons/globe.svg">
+					<span class="icon icon--globe feature-item__icon"></span>
 					<h3 class="feature-item__title">Global Guides</h3>
 					<p>We&rsquo;ve scoured the entire planet for the best retreats and beautiful vistas. If there&rsquo;s a corner of the world you want to escape to we know the most scenic and inspiring locations.</p>
 				</div>
 			</div>
 			<div class="row__medium-6">
                 <div class="feature-item">			
-					<img class="feature-item__icon" src="assets/images/icons/wifi.svg">
+					<span class="icon icon--wifi feature-item__icon"></span>
 					<h3 class="feature-item__title">Wi-Fi Waypoints</h3>
 					<p>We only send you on trips to places we can personally vouch for as being amazing. Which means we&rsquo;ve mapped out where local wi-fi spots are and marked them in our app&rsquo;s map view.</p>
 				</div>
 
 				<div class="feature-item">
-					<img class="feature-item__icon" src="assets/images/icons/fire.svg">
+					<span class="icon icon--fire feature-item__icon"></span>
 					<h3 class="feature-item__title">Survival Kit</h3>
 					<p>Everytime you book an escape with us we send you a survival kit with the finest materials. The kit will allow you to setup a tent, start a fire, scratch your own back and lower your taxes.</p>
 				</div>
@@ -203,8 +208,9 @@
   <div id="testimonials" class="page-section page-section--no-btm-padding-until-large 
       page-section--testimonials">
     <div class="wrapper wrapper--no_padding-until-large">		
+	    <!-- section-title__icon -->
 		<h2 class="section-title section-title--blue">
-		    <img class="section-title__icon" src="assets/images/icons/comment.svg"> 
+		    <span class="icon icon--comment section-title__icon"></span>
 			Real <strong>Testimonials</strong>
 		</h2>
 
